@@ -1,0 +1,22 @@
+
+name: Conditional
+
+on:
+  workflow_dispatch:
+    inputs:
+      condition:
+        description: 'Condition that declare result.'
+        required: true
+        type: boolean
+        default: false
+
+jobs:
+  conditional:
+    runs-on: ubuntu-latest
+    steps:
+      - name: true
+        if: ${{ github.event.inputs.condition == 'true' }}
+        run: exit 0
+      - name: false
+        if: ${{ github.event.inputs.condition == 'false' }}
+        run: exit 1
